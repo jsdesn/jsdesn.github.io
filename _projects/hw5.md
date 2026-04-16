@@ -19,13 +19,16 @@ This is the [dataset](https://github.com/UIUC-iSchool-DataViz/is445_data/raw/mai
 
 <vegachart schema-url="{{ site.baseurl }}/assets/json/plot1.json" style="width: 100%"></vegachart>
 
-This bar chart visualizes the distribution of UFO sightings across different US states. I chose to use a **Nominal (N)** encoding for the states on the X-axis and a **Quantitative (Q)** encoding for the count of sightings on the Y-axis. To make the data more readable, I sorted the states in descending order of sightings and applied a 'viridis' color scheme to highlight the density of reports. In my Python notebook, I transformed the data by filtering for US-based reports and aggregating the total counts per state using a groupby operation to ensure the resulting JSON file remained lightweight for web hosting.
+For this vizualization, I created a bar chart that displays the total number of UFO sightings across the US states. This plot uses a Nominal(N) encoding for the state variable on the X-axis and a Quantitative (Q) encoding for the count of sightings on the Y-axis.
 
+To make the graph look better I chose to sort the states in descending order based on the number of sightings and applied a viridis color scheme, which maps the magnitude of sightings to a perceptually uniform color scale, which makes it easier to identify sates with high report volumes like California. I used Pandas to filter the raw dataset for US-based entries and performed a groupby to aggregate the sightings.
 ### Visualization 2: Time of Day vs. Duration
 
 <vegachart schema-url="{{ site.baseurl }}/assets/json/plot2.json" style="width: 100%"></vegachart>
 
-The second visualization is a scatter plot examining the relationship between the time of day a sighting occurred and the duration of that encounter. I utilized a **Temporal (T)** encoding for the time (hours) and a **Quantitative (Q)** encoding for the duration in seconds. The color is mapped to the UFO shape, which is a **Nominal (N)** variable. For interactivity, I implemented a **selection interval (brush)**; this allows users to highlight specific clusters of sightings by clicking and dragging, which helps in identifying patterns among different shapes or specific times of night. On the analysis side, I converted the raw datetime strings into Python datetime objects and filtered out extreme duration outliers to maintain a clear visual scale.
+This graph is a scatter plot shoing the relationship between the time of day a sighting occurs and how long it lasts. This chart uses a Temporal(T) encoding for the X-axis and a Quantitative(Q) encoding for the Y-axis. The shape of the UFO is represented as a Nominal (N) variable using a discrete color scheme to differentiate between categories like 'disk' or 'light'.
+
+For interactivity, I used a selection interval that lets users click and drag across the plot to highlight specific clusters of data. This allows users to isolate specific times frames or duration ranges to see which shapes are the most common. I converted the datetime strings into python datetime objects to allow for proper temporal scaling and filtered the duration data to remove extreme outliers, which ensures the majority of the data porints are visible without excessive compression of y-axis.
 
 ## Search The Data & Methods
 
@@ -34,6 +37,7 @@ The second visualization is a scatter plot examining the relationship between th
 
 <div class="left">
 {% include elements/button.html link="https://github.com/UIUC-iSchool-DataViz/is445_data/raw/main/ufo-scrubbed-geocoded-time-standardized-00.csv" text="The Data" %}
+</div>
 </div>
 
 <div class="right">
